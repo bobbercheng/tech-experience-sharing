@@ -2,6 +2,7 @@
 
 ## ML Model Metrics
 ### Offline Metrics
+#### General
 - Retrieval: Recall, nDCG
 - Rerank: MRR, AUC
 - Classification (Imbalanced): Precision, Recall, F1, Log loss
@@ -9,11 +10,31 @@
 - Ranking: NDCG, MAP, MRR
 - Text Generation: BLEU, ROUGE, Perplexity
 
-### Online Metrics
+#### Search & Recommend
+##### Predictive quality metrics
+- Precision at K
+- Recall at K
+- F-score
+
+##### Ranking quality metrics
+- MRR, MAP and NDCG
+- Hit Rate (online)
+
+##### Behavioral metrics
+- Diversity
+- Novelty
+- Serendipity
+- Popularity bias
+
+##### final metrics
+Search: MAP, Recall, Precision, NDCG, R-Precision 
+
+### Online Metrics/Business Metrics
 - Positive Metrics
   - CTR (Click-Through Rate)
   - ATC (Add-to-Cart)
-  - Purchase Rate
+  - Conversion Rate
+  - User engagement metrics
 - Negative Metrics
   - Exit Rate
   - Zero Result Rate
@@ -64,7 +85,6 @@
 
 ## GPU Cluster Performance Optimization
 ### Model Optimization
-- Vector quantization
 - Quantization (FP32 -> FB16 or INT8 for reducing memory footprint)
 - Pruning (Removing unnecessary layers/weights)
 - Knowledge distillation (training smaller models with teacher guidance)
