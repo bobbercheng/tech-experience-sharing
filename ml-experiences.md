@@ -116,6 +116,3 @@
   - Solutions: FlashAttention, transformer batching
 - Latency and flexibility trade-off
 - Guardrails control
-
-## Thanks
-Lan, Kai, Yuhan
