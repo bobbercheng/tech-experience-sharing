@@ -11,6 +11,9 @@
 - Text Generation: BLEU, ROUGE, Perplexity
 
 #### Search & Recommend
+
+Refer to https://www.evidentlyai.com/ranking-metrics
+
 ##### Predictive quality metrics
 - Precision at K
 - Recall at K
@@ -28,7 +31,7 @@
 
 ##### final metrics
 - Search: MAP, Recall, Precision, NDCG, R-Precision 
-- Fintech: AUC, KS, binary classification
+- Fintech: AUC, [KS](https://chatgpt.com/share/67e8bef2-cef0-800d-b4fd-348c4db92de6) for binary classification
 - Fraud detection: Recall
 
 ### Online Metrics/Business Metrics
