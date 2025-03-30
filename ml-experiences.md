@@ -27,9 +27,9 @@
 - Popularity bias
 
 ##### final metrics
-Search: MAP, Recall, Precision, NDCG, R-Precision 
-Fintech: AUC, KS, binary classification
-Fraud detection: Recall
+- Search: MAP, Recall, Precision, NDCG, R-Precision 
+- Fintech: AUC, KS, binary classification
+- Fraud detection: Recall
 
 ### Online Metrics/Business Metrics
 - Positive Metrics
