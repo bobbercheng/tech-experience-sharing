@@ -95,7 +95,7 @@ Refer to https://www.evidentlyai.com/ranking-metrics
 - Knowledge distillation (training smaller models with teacher guidance)
 
 ### Efficient Execution
-- TensorRT/ONNX Runtime: converts model for optimized GPU inference
+- TensorRT/ONNX Runtime: converts model for optimized GPU inference. SGLang or TensorRT-LLM could be used here.
 - Caching and batching: Combines multiple requests to maximize throughput
 - Asynchronous execution: avoid idle GPU time
 
@@ -110,7 +110,7 @@ Refer to https://www.evidentlyai.com/ranking-metrics
   - Solutions: KV cache optimization, speculative decoding
 - Memory constraints
   - Hosting LLMs requires high VRAM (A100)
-  - Solutions: Model partitioning, CPU/RAM offloading
+  - Solutions: Model partitioning, CPU/RAM offloading. Ray could be used. vLLM can partition big LLM models to multiple hosts while ollama can only use multiple GPUs in the same host.
 - Scalability & Cost
   - Running inference at scale is expensive
   - Solutions: MoE (Mixture of Experts), distillation (small models like LLama-7B)
