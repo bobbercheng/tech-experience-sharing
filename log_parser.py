@@ -58,10 +58,10 @@ def process_single_file(log_file: str, result: dict, result_lock: Lock):
 
                     # Update average duration for this call_id
                     if len(host_result[call_id]['details']) > 0:
-                        previous_average = host_result[call_id]['average']
-                        count = len(host_result[call_id]['details'])
-                        new_average = (previous_average * (count - 1) + duration) / count
                         with result_lock:
+                            previous_average = host_result[call_id]['average']
+                            count = len(host_result[call_id]['details'])
+                            new_average = (previous_average * (count - 1) + duration) / count
                             host_result[call_id]['average'] = new_average
 
 
