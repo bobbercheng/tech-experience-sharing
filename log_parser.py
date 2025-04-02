@@ -24,7 +24,7 @@ def calculate_duration(start_time: str, end_time: str) -> float:
 
 
 
-def process_single_file(log_file: str, result: dict, result_lock: Lock):
+def process_single_file(log_file: str, result: dict, result_lock: Lock) -> None:
     """Process a single log file and update the result dictionary."""
     hostname = parse_hostname(log_file)
     host_result = {}
@@ -75,7 +75,7 @@ def process_single_file(log_file: str, result: dict, result_lock: Lock):
         result[hostname] = host_result
 
 
-def process_log_files(logs_dir):
+def process_log_files(logs_dir: str) -> dict:
     """Process all log files in the specified directory."""
     result = {}
     
@@ -91,7 +91,7 @@ def process_log_files(logs_dir):
         
     return result
 
-def main():
+def main() -> None:
     # Specify the logs directory (assuming it's in the same directory as the script)
     logs_dir = 'logs'
     
