@@ -50,9 +50,7 @@ import os
 import glob
 from datetime import datetime
 import json
-from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
-import traceback
 
 def parse_timestamp(timestamp_str: str) -> datetime:
     """Convert timestamp string to datetime object."""
@@ -110,14 +108,14 @@ def process_single_file(log_file: str, result: dict, result_lock: Lock) -> None:
                         with result_lock:
                             previous_average = host_result[call_id]['average']
                             count = len(host_result[call_id]['details'])
-                            new_average = (previous_average * (count - 1) + duration) / count
+                            new_average = (previous_average  + duration) / count
                             host_result[call_id]['average'] = new_average
 
 
     except Exception as e:
         # print error callstack
         print(f"Error processing {log_file}: {e}")
-        traceback.print_exc()
+        e.traceback.print_exc()
     
     # Update global result dict thread-safely
     with result_lock:
@@ -134,11 +132,9 @@ def process_log_files(logs_dir: str) -> dict:
     result_lock = Lock()
     
     
-    # Process files in parallel using thread pool
-    with ThreadPoolExecutor(max_workers=os.cpu_count() * 2) as executor:
-        executor.map(process_single_file, log_files, [result], [result_lock])
-        
-    return result
+    for log_file in log_files:
+        process_single_file(log_file, result, result_lock)
+
 
 def main() -> None:
     # Specify the logs directory (assuming it's in the same directory as the script)
