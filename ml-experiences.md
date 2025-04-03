@@ -110,7 +110,9 @@ Refer to https://www.evidentlyai.com/ranking-metrics
   - Solutions: KV cache optimization, speculative decoding
 - Memory constraints
   - Hosting LLMs requires high VRAM (A100)
-  - Solutions: Model partitioning, CPU/RAM offloading. Ray could be used. vLLM can partition big LLM models to multiple hosts while ollama can only use multiple GPUs in the same host.
+  - Solutions: Model partitioning, CPU/RAM offloading. Ray could be used. 
+    - vLLM can partition big LLM models to multiple hosts while ollama can only use multiple GPUs in the same host.
+    - LWS can load large model from disk with different participant parallel.
 - Scalability & Cost
   - Running inference at scale is expensive
   - Solutions: MoE (Mixture of Experts), distillation (small models like LLama-7B)
