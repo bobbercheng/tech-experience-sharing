@@ -113,6 +113,7 @@ Refer to https://www.evidentlyai.com/ranking-metrics
   - Solutions: Model partitioning, CPU/RAM offloading. Ray could be used. 
     - vLLM can partition big LLM models to multiple hosts while ollama can only use multiple GPUs in the same host.
     - LWS can load large model from disk with different participant parallel.
+      - chunk-based deduplication, Huggingface Xet-core
 - Scalability & Cost
   - Running inference at scale is expensive
   - Solutions: MoE (Mixture of Experts), distillation (small models like LLama-7B)
@@ -121,3 +122,8 @@ Refer to https://www.evidentlyai.com/ranking-metrics
   - Solutions: FlashAttention, transformer batching
 - Latency and flexibility trade-off
 - Guardrails control
+
+
+## LLM training
+[The Ultra-Scale Playbook: Training LLMs on GPU Clusters](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high_level_overview)
+
