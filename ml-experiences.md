@@ -127,3 +127,90 @@ Refer to https://www.evidentlyai.com/ranking-metrics
 ## LLM training
 [The Ultra-Scale Playbook: Training LLMs on GPU Clusters](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=high_level_overview)
 
+
+## 🚀 **Google AI/ML Infrastructure - Domain Expertise Interview Questions**
+
+### 🧩 **ML Platform and Infrastructure**
+
+1.  **Design Google's internal ML training platform** to efficiently support thousands of researchers training models concurrently.
+    
+2.  **Design a distributed training system** that scales to thousands of GPUs/TPUs across multiple data centers.
+    
+3.  **Design a flexible and scalable inference serving infrastructure** for large-scale production ML models, capable of handling millions of requests per second.
+    
+4.  **Design a multi-region ML model deployment system** with automated model validation, deployment, and rollback mechanisms.
+    
+5.  **Design an efficient GPU/TPU resource management and scheduling system** for optimizing utilization across teams.
+    
+
+----------
+
+### 📊 **Data Infrastructure and Management**
+
+6.  **Design a feature store** to provide low-latency retrieval, feature consistency, versioning, and backfill capabilities across billions of data points.
+    
+7.  **Design a scalable ML data ingestion pipeline** supporting streaming and batch ingestion, integrated with ML training systems.
+    
+8.  **Design a dataset management and versioning system** that maintains lineage, reproducibility, and compliance (privacy/GDPR).
+    
+
+----------
+
+### 📈 **Monitoring, Validation, and Observability**
+
+9.  **Design a real-time monitoring and alerting system for ML pipelines** to detect data drift, performance degradation, and anomalies in large-scale ML production deployments.
+    
+10.  **Design an observability platform** to provide end-to-end tracing, logging, and debugging for ML workflows at Google scale.
+    
+
+----------
+
+### 🛠️ **Model Lifecycle Management**
+
+11.  **Design an end-to-end ML experimentation system** that handles experiment tracking, A/B testing, hyperparameter tuning, reproducibility, and collaboration.
+    
+12.  **Design a robust automated ML model validation system** capable of evaluating and deploying hundreds of models daily, with automated fallback mechanisms.
+    
+13.  **Design a continuous training and delivery pipeline (CT/CD)** for ML models, including retraining, testing, deployment, and monitoring at Google scale.
+    
+
+----------
+
+### 🔒 **Security and Compliance**
+
+14.  **Design a secure ML infrastructure** ensuring isolation and security of data, models, and infrastructure across multiple teams and regulatory requirements.
+    
+15.  **Design an audit and compliance framework** integrated into ML infrastructure, supporting data access controls, privacy constraints, and governance policies at global scale.
+    
+
+----------
+
+### ⚙️ **Efficiency, Optimization, and Cost Management**
+
+16.  **Design a system for optimizing ML workloads** to improve resource utilization, reduce training/inference latency, and minimize cloud resource costs.
+    
+17.  **Design a ML infrastructure cost analytics and optimization platform** to provide visibility, recommendations, and automation of cost control across large ML infrastructure clusters.
+    
+
+----------
+
+### 🌐 **Open-ended Strategic Questions**
+
+18.  **Propose a new problem in ML infrastructure** at Google scale that can significantly improve developer productivity and model deployment efficiency.
+    
+19.  **How would you design a strategic roadmap** for Google's ML infrastructure for the next 5 years? What problems would you prioritize, and why?
+    
+20.  **Describe how you would handle migrating Google's large-scale ML systems** to new hardware technologies (e.g., next-generation TPUs) or cloud-native platforms.
+    
+
+----------
+
+These questions assess your:
+
+-   **Deep technical expertise** in large-scale ML infrastructure.
+    
+-   **Strategic thinking** vs. purely tactical approaches.
+    
+-   **Capability to address large-scale, complex, and ambiguous problems** requiring cross-team collaboration.
+    
+-   **Ability to propose novel solutions and new areas of innovation** within the ML infrastructure domain.

@@ -473,44 +473,335 @@ https://igotanoffer.com/blogs/tech/google-system-design-interview#:~:text=11,app
 
 # OpenAI
 
-#  a ride-sharing service (e.g., Uber or Lyft)
 
-# an in-memory database
+### an in-memory database
 
-# a web hook system
 
-# Build an LLM-powered enterprise search system
+### 1. Design a ride-sharing system (e.g., Uber/Lyft)
 
-# Design a system to monitor and serve ML model metrics in real-time
+**Key considerations:** Matching, location indexing, fairness, dynamic pricing **Components:**
+
+-   Location service (spatial indexing using S2 or Geohash)
+    
+-   Matching service (pub/sub + priority queues)
+    
+-   Pricing engine (real-time supply/demand)
+    
+-   Trip management and billing
+    
+
+**Techniques:**
+
+-   Use Redis or Cassandra for geo queries
+    
+-   Stream trip logs via Kafka
+    
+-   Async matching with ML-based ETA predictions
+    
+
+----------
+
+### 2. Design an LLM-powered enterprise search platform
+
+**Key considerations:** Latency, context injection, semantic ranking **Components:**
+
+-   Ingestion pipeline (documents, metadata)
+    
+-   Vector index (FAISS/Weaviate)
+    
+-   Retriever + reranker model
+    
+-   Query frontend with embedding generation
+    
+
+**Techniques:**
+
+-   Hybrid retrieval (BM25 + semantic)
+    
+-   Prompt engineering for query + context fusion
+    
+-   Caching and rate limiting
+    
+
+----------
+
+### 3. Design a webhook/event notification system
+
+**Key considerations:** Reliability, retries, ordering **Components:**
+
+-   Event producer + router
+    
+-   Delivery queue
+    
+-   Retry scheduler (exponential backoff)
+    
+-   Audit logging
+    
+
+**Techniques:**
+
+-   Use HTTP 2 + webhook signature verification
+    
+-   Store undelivered events with TTL for retry
+    
+-   Dashboard for delivery status
+
 
 # Anthropic
 
-# Design an autoscaling inference system for LLMs
+### 1. Design an autoscaling inference system for LLMs
 
-# Design a logging pipeline to collect and analyze billions of LLM interactions per day
+**Key considerations:** GPU resource usage, latency, concurrency **Components:**
 
-# Design a secure system for human feedback collection on model outputs
+-   Inference gateway
+    
+-   Model server cluster
+    
+-   Autoscaler (based on queue depth, load)
+    
+-   Token budget tracker
+    
 
-# Design a data labeling pipeline with privacy guarantees
+**Techniques:**
+
+-   Use batching to improve GPU utilization
+    
+-   Implement warm pools of models
+    
+-   Load shed via backpressure
+    
+
+----------
+
+### 2. Design a secure system for human feedback collection
+
+**Key considerations:** Privacy, UX, consistency, logging **Components:**
+
+-   Frontend task interface
+    
+-   Feedback submission service
+    
+-   Secure data store
+    
+-   Reviewer dashboard
+    
+
+**Techniques:**
+
+-   Encrypt feedback at client level
+    
+-   Store provenance info (who/when/what)
+    
+-   Differential privacy or anonymization for analysis
+    
+
+----------
+
+### 3. Design a logging pipeline for billions of LLM interactions/day
+
+**Key considerations:** Volume, indexing, query performance **Components:**
+
+-   Log collector (e.g., FluentBit)
+    
+-   Stream processor (Kafka + Flink)
+    
+-   Indexing and search engine (ClickHouse, Elastic)
+    
+-   Data lake for cold storage (S3 + Iceberg)
+    
+
+**Techniques:**
+
+-   Partition logs by time + tenant
+    
+-   Use columnar formats (Parquet)
+    
+-   Async aggregation jobs for analytics
+
 
 # DeepMind
 
-# Design a system to train a reinforcement learning agent at scale
 
-# Design a distributed GPU job scheduler for large ML workloads
+### 1. **Design a system to train a reinforcement learning (RL) agent at scale**
+
+#### 🧱 Core Components
+
+-   **Simulation workers (envs)**
+    
+-   **Learner nodes (model trainers)**
+    
+-   **Replay buffer (experience storage)**
+    
+-   **Parameter server**
+    
+-   **Coordination & scheduling service**
+    
+
+#### ⚙️ Techniques
+
+-   **Distributed RL framework** like IMPALA or R2D2
+    
+-   **Experience prioritization** (PER)
+    
+-   **gRPC for fast inter-node communication**
+    
+-   **TensorFlow or JAX with XLA for performance**
+    
+
+#### 🔁 Trade-offs
+
+-   **On-policy vs off-policy**: On-policy has fresher data, off-policy is more sample-efficient.
+    
+-   **Centralized vs decentralized replay**: Centralized is simpler but bottlenecked.
+    
+-   **Synchronous vs asynchronous updates**: Sync is stable, async is fast but harder to debug.
+    
+
+----------
+
+### 2. **Design a distributed GPU job scheduler for large ML workloads**
+
+#### 🧱 Core Components
+
+-   **Job submission API**
+    
+-   **Cluster state tracker**
+    
+-   **Resource allocator**
+    
+-   **Execution agents (e.g., Kubernetes pods)**
+    
+-   **Priority & preemption logic**
+    
+
+#### ⚙️ Techniques
+
+-   **Fair-share + priority queues**
+    
+-   **Node labeling for GPU type**
+    
+-   **Gang scheduling** for multi-GPU jobs
+    
+-   **Checkpointing for preempted jobs**
+    
+
+#### 🔁 Trade-offs
+
+-   **Utilization vs fairness**: Higher utilization may starve some jobs.
+    
+-   **Preemption vs job progress**: Preemption adds overhead.
+    
+-   **Bin-packing vs speed**: Better GPU packing takes time to calculate.
+    
+
+----------
+
+### 3. **Design a multi-modal data platform (text + image + video)**
+
+#### 🧱 Core Components
+
+-   **Ingestion layer**
+    
+-   **Schema service with modality metadata**
+    
+-   **Storage backends: blob store (S3/GCS) + DB for metadata**
+    
+-   **Indexing and search service**
+    
+-   **Data versioning**
+    
+
+#### ⚙️ Techniques
+
+-   **Unified metadata schema across modalities**
+    
+-   **Deduplication by perceptual hashing**
+    
+-   **Content filtering pipeline**
+    
+-   **Lazy loading & partial retrieval (e.g., video frames)**
+    
+
+#### 🔁 Trade-offs
+
+-   **Storage cost vs retrieval latency**
+    
+-   **Strict schema vs flexibility**: Unified schema simplifies pipeline, but can restrict features.
 
 # Design a scientific research data platform with version control and collaboration
 
-# Design a system to manage multi-modal (text + image + video) datasets
 
 # 🧠 Meta (AI/FAIR teams)
-Design a large-scale recommendation engine (e.g., for Instagram or Facebook Feed)
 
-Design a feature store for ML models
+### 1. Design a large-scale recommendation engine
 
-Design a distributed training system for multi-billion parameter models
+**Key considerations:** Latency, personalization, freshness **Components:**
 
-Design a model registry and deployment pipeline for real-time prediction
+-   Feature store (real-time + batch)
+    
+-   Candidate generator
+    
+-   Ranking model service
+    
+-   Logging and feedback loop
+    
+
+**Techniques:**
+
+-   Train embeddings for users/items
+    
+-   Use caching layers for hot items
+    
+-   Click-through-rate prediction model
+    
+
+----------
+
+### 2. Design a feature store for ML models
+
+**Key considerations:** Reusability, consistency, low latency **Components:**
+
+-   Online store (Redis/Cassandra)
+    
+-   Offline store (S3 + Hive)
+    
+-   Transformation engine
+    
+-   Registry and versioning
+    
+
+**Techniques:**
+
+-   Materialize features ahead of time
+    
+-   Join feature values by entity IDs
+    
+-   Time-travel support for backtesting
+    
+
+----------
+
+### 3. Design a distributed training system for billion+ parameter models
+
+**Key considerations:** Scalability, fault tolerance, throughput **Components:**
+
+-   Trainer orchestrator (Horovod, DeepSpeed)
+    
+-   Parameter sharding and checkpointing
+    
+-   Gradient accumulator
+    
+-   Elastic cluster manager
+    
+
+**Techniques:**
+
+-   Pipeline + data parallelism
+    
+-   Mixed precision + gradient clipping
+    
+-   TensorBoard/metrics tracking
+
 
 🧪 Cohere / Mistral / Inflection AI
 Design a system to serve embedding-as-a-service at scale
@@ -573,9 +864,65 @@ Design a system to evaluate LLM model performance across benchmarks
 - Implement staleness-tolerant updates (e.g. SSP)
 - Snapshot and restore functionality
 
-# Design a plugin-based system for experiment tracking
+# Design a plugin-based system for experiment tracking (like MLFlow)
+
+#### 🧱 Core Components
+
+-   **Tracking server (API + UI)**
+    
+-   **Artifact store**
+    
+-   **Metrics DB**
+    
+-   **Plugin interface for custom loggers**
+    
+
+#### ⚙️ Techniques
+
+-   **Immutable run records**
+    
+-   **Versioning via run UUIDs**
+    
+-   **Plugin hooks: before_run, after_run, on_error**
+    
+-   **Offline logging mode**
+    
+
+#### 🔁 Trade-offs
+
+-   **Centralized vs decentralized logging**: Centralized is easier to manage; decentralized is more resilient.
+    
+-   **Flat vs nested experiment metadata**: Nested improves organization but complicates queries.
 
 # Design a model reproducibility and lineage tracking service
+
+#### 🧱 Core Components
+
+-   **Model registry**
+    
+-   **Data source lineage system**
+    
+-   **Experiment config snapshots**
+    
+-   **Audit logs + hashes**
+    
+
+#### ⚙️ Techniques
+
+-   **Hash every component (code, data, env)**
+    
+-   **Immutable model versions**
+    
+-   **Integration with git and DVC**
+    
+-   **Graph-based lineage explorer**
+    
+
+#### 🔁 Trade-offs
+
+-   **Auditability vs overhead**: Full snapshots are reliable but slow.
+    
+-   **Strict versioning vs dev velocity**: May slow fast iteration.
 
 # Kubernetes
 ## Extending Kubernetes
